@@ -1,0 +1,45 @@
+<ion-header>
+
+  <ion-navbar color="danger">
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="closeModal()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <agm-map *ngIf="showMap" [latitude]="coords.lat" [longitude]="cords.lng" [zoom]="10">
+    <agm-marker [latitude]="coords.lat" [longitude]="coords.lng"></agm-marker>
+  </agm-map>
+
+  <ion-card>
+    <img src="assets/img/contact.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{contact.fullName}}
+        <p *ngFor="let direction of contact.directions"><b>Direction:</b> {{direction}}</p>
+        <br>
+        <p *ngFor="let phone of contact.phones"><b>Phone:</b> {{phone}}</p>
+        <br>
+        <p *ngFor="let email of contact.emails"><b>Email:</b> {{email}}</p>
+        <br>
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="danger">
+    <ion-buttons end>
+      <button ion-button (click)="saveContactInTerminal()" >
+        <ion-icon name="md-archive"> Save </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

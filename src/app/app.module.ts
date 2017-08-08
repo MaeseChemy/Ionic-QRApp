@@ -4,27 +4,47 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AgmCoreModule } from '@agm/core';
+import { Contacts } from '@ionic-native/contacts';
+
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { TabsPage, HomePage, HistoricPage, ModalPage } from '../pages/index.pages';
+
+import { HistoricService } from '../services/historic.service';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    TabsPage,
+    HomePage,
+    HistoricPage,
+    ModalPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDj1VnMf4elF-J502qh0rI3Nzw65ForkYY'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    TabsPage,
+    HomePage,
+    HistoricPage,
+    ModalPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    BarcodeScanner,
+    InAppBrowser,
+    Contacts,
+    HistoricService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

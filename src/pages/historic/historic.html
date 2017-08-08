@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Historic</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let hist of historic; let index = index" (click)="executeScanTask(index)">
+      <ion-icon [name]="hist.icon" item-start></ion-icon>
+      {{index}}. {{hist.type}}
+      <br>
+      <h2>{{hist.info}}</h2>
+      <p>{{hist.date | date: 'medium'}}</p>
+    </button>
+  </ion-list>
+</ion-content>
